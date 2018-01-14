@@ -39,16 +39,11 @@ namespace Warsztat
 
         static public void DrugaUsterka(string rej, string nowaUsterka)
         {
-            foreach (var e in samochody)
-            {
-                if(e.PobierzRejestracje()==rej)
-                {
-                    Samochod kopia = e.SkopiujSamochod();
-                    kopia.ZmienUSterke(nowaUsterka);
-                    samochody.Add(kopia);
-                    break;
-                }
-            }
+
+            Samochod szukany = samochody.Find(e => e.PobierzRejestracje() == rej);
+            Samochod kopia = szukany.SkopiujSamochod();
+            kopia.ZmienUSterke(nowaUsterka);
+            samochody.Add(kopia);
         }
             
         static public void wypisz()
